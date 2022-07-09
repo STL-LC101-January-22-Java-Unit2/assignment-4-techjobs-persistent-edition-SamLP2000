@@ -1,12 +1,22 @@
 package org.launchcode.techjobs.persistent.models;
 
 import java.util.Objects;
+import javax.persistence.GeneratedValue;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
+import javax.persistence.Id;
 
 
+@MappedSuperclass
 public abstract class AbstractEntity {
 
+    @Id
+    @GeneratedValue
     private int id;
 
+    @NotBlank(message = "Please enter your name.")
+    @Size(min = 3, max = 100, message = "The name must be between 3 and 100 characters")
     private String name;
 
     public int getId() {
